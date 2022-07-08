@@ -18,8 +18,32 @@ main.ts：入口文件，使用`NestFactory`用来创建Nest应用实例
 ## 生成文件不带单元测试
 
 在`nest-cli.json`中添加
-```
+```json
 "generateOptions": {
   "spec": false
 }
 ```
+
+## 版本控制
+
+1. 在`mian.ts`启用版本配置
+```ts
+app.enableVersioning({
+  type: VersioningType.URI
+})
+```
+2. 单个控制用`@Version`
+3. 全局配置
+```ts
+app.enableVersioning({
+  type: VersioningType.URI,
+  defaultVersion: '1'
+})
+```
+在controller中添加version属性
+```ts
+@Controller({
+  path: '',
+  version: '1'
+})
+``` 
